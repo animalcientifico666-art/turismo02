@@ -20,7 +20,7 @@ export const BestSellingTours = () => {
 
   return (
     <section className="py-20 px-6 max-w-7xl mx-auto">
-      <h2 className="text-3xl text-center font-extrabold">Best Selling Tours</h2>
+      <h2 className="text-3xl text-center font-extrabold">El mejor tour</h2>
 
       <Swiper
         modules={[EffectCoverflow, Navigation, Pagination]}
