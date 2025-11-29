@@ -4,7 +4,7 @@ export const AboutSection=()=> {
       <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-16">
 
         <div>
-          <h3 className="text-2xl font-bold text-gray-800">Why Choose Us?</h3>
+          <h3 className="text-2xl font-bold text-gray-800">¿Porque elegirnos?</h3>
           <p className="mt-3 text-gray-600 leading-relaxed">
             We specialize in spiritual and adventure tours that connect you to
             the sacred Andes, offering unforgettable experiences grounded in
