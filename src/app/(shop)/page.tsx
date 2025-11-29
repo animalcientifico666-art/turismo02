@@ -47,7 +47,6 @@ export default function Home() {
 
   return (
     <div>
-      <ContactForm/>
       <Hero/>
       <BestSellingTours/>
       <AboutSection/>
