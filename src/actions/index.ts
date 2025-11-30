@@ -14,3 +14,5 @@ export * from './auth/register';
 export * from './user/change-user-role';
 
 export * from './user/get-paginated-users';
+
+export * from './order/get-paginated-orders';
