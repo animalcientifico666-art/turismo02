@@ -36,3 +36,5 @@ export * from './portada/WhatsAppButton';
 export * from './provider/provider';
 
 export * from './portada/ContactForm';
+
+export * from './product/product-image/Productimage'

@@ -150,11 +150,11 @@ const isAdmin=(session?.user.role==='admin');
             </Link>
 
             <Link
-                href="/"
+                href="/admin/users"
                 className="flex item-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
             >
                 <IoPeopleOutline size={30} />
-                <span className="ml-3 text-xl">Ordenes</span>
+                <span className="ml-3 text-xl">Usuarios</span>
             </Link>
                 
                 

@@ -10,3 +10,7 @@ export * from './auth/login';
 export * from './auth/logout';
 
 export * from './auth/register';
+
+export * from './user/change-user-role';
+
+export * from './user/get-paginated-users';
