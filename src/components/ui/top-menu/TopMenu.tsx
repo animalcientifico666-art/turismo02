@@ -50,7 +50,7 @@ export const TopMenu = () => {
             "
           >
             <span className="text-lg">⛰️</span>
-            <span className="block text-sm">Aventura Hombres</span>
+            <span className="block text-sm">Productos</span>
 
             {/* Línea animada */}
             <span className="
@@ -61,7 +61,7 @@ export const TopMenu = () => {
           </Link>
 
           <Link
-            href="/gender/women"
+            href="/about"
             className="
               px-4 py-2 rounded-xl font-medium text-gray-800
               hover:text-pink-700 hover:bg-pink-100
@@ -69,7 +69,7 @@ export const TopMenu = () => {
             "
           >
             <span className="text-lg">🌸</span>
-            <span className="block text-sm">Turismo Mujeres</span>
+            <span className="block text-sm">Quienes somos</span>
 
             <span className="
               absolute left-1/2 -bottom-1 -translate-x-1/2 

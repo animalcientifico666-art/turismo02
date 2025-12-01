@@ -1,13 +1,13 @@
 
-import type {CardProduct} from '@/interfaces';
+import type {CartProduct} from '@/interfaces';
 import { Product } from '@prisma/client';
 import {create} from 'zustand';
 import { persist,createJSONStorage } from 'zustand/middleware';
 
 interface State{
-    cart: CardProduct[];
+    cart: CartProduct[];
 
-    addProductTocart:(product:CardProduct)=>void;
+    addProductTocart:(product:CartProduct)=>void;
 
     getTotalItems:()=>number;
     
@@ -18,9 +18,9 @@ interface State{
         itemsInCart:number
     };
 
-    updateProductQuantity:(product: CardProduct, quantity:number)=>void;
+    updateProductQuantity:(product: CartProduct, quantity:number)=>void;
 
-    removeProduct:(product: CardProduct)=>void;
+    removeProduct:(product: CartProduct)=>void;
 
 }
 export const useCartStore=create<State>()(
@@ -55,7 +55,7 @@ export const useCartStore=create<State>()(
         },
 
         //metfods
-        addProductTocart:(product: CardProduct)=>{
+        addProductTocart:(product: CartProduct)=>{
 
             const{cart} = get();
 
@@ -84,7 +84,7 @@ export const useCartStore=create<State>()(
             set({cart:updateCartProducts})
 
         },
-        updateProductQuantity(product: CardProduct, quantity:number) {
+        updateProductQuantity(product: CartProduct, quantity:number) {
             const{cart}=get();
 
             const updatedCartProducts=cart.map(item=>{
@@ -97,7 +97,7 @@ export const useCartStore=create<State>()(
             set({cart:updatedCartProducts});
 
         },
-        removeProduct:(product:CardProduct)=>{
+        removeProduct:(product:CartProduct)=>{
             const{cart}=get();
             const updateCartProducts=cart.filter(
                 (item)=>item.id !== product.id || item.size !== product.size

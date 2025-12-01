@@ -49,13 +49,14 @@ export const getPaginatedProductsWithImages=async({
 
 
         return {
-    currentPage: page,
-    totalPages: totalPages,
-    products: products.map((product: any) => ({
-        ...product,
-        images: (product.ProductImage || []).map((image: any) => image.url)
-    }))
-};
+        currentPage: page,
+        totalPages: totalPages,
+        products: products.map((product: any) => ({
+                    ...product,
+                    images: (product.ProductImage || []).map((image: any) => image.url)
+                        }))
+        };
+
 
 
     }catch(error){

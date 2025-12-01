@@ -5,7 +5,7 @@ import { currencyFormat } from "@/utils";
 import { useEffect, useState } from "react"
 
 export const OrderSummary = () => {
-
+  const [ready, setReady] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
   // 1) Obtener la función del store SIN llamar dentro del selector
@@ -17,6 +17,14 @@ export const OrderSummary = () => {
   useEffect(() => {
     setLoaded(true);
   }, []);
+
+  useEffect(() => {
+    setReady(true);
+  }, []);
+
+  if (!ready) {
+    return null; // O un loader
+  }
 
   return (
     <div className="grid grid-cols-2">

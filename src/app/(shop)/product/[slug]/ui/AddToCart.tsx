@@ -1,7 +1,7 @@
 'use client';
 
 import { QuantitySelector, SizeSelector } from "@/components"
-import type {CardProduct,Product, Size } from "@/interfaces"
+import type {CartProduct,Product, Size } from "@/interfaces"
 import { useCartStore } from "@/store";
 import { title } from "process";
 
@@ -26,7 +26,7 @@ export const AddToCart=({product}:Props)=>{
 
         if(!size) return;
 
-        const cartProduct: CardProduct={
+        const cartProduct: CartProduct={
             id:product.id,
             slug:product.slug,
             title:product.title,

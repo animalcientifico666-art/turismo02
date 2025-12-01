@@ -17,7 +17,10 @@ interface Props {
 }
 
 export default async function OrdersPage({ searchParams }: Props) {
-  const page = searchParams.page ? parseInt(searchParams.page) : 1;
+  // Si searchParams viene como Promise, hacemos:
+  const params = await searchParams;
+
+  let page = parseInt(params?.page ?? "1", 10);
 
   const { products, currentPage, totalPages } =
     await getPaginatedProductsWithImages({ page });
@@ -54,24 +57,28 @@ export default async function OrdersPage({ searchParams }: Props) {
               >
                 Precio
               </th>
+{/* 
               <th
                 scope="col"
                 className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
               >
                 Género
               </th>
+*/}
               <th
                 scope="col"
                 className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
               >
                 Inventario
               </th>
+{/* 
               <th
                 scope="col"
                 className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
               >
                 Tallas
               </th>
+*/}
             </tr>
           </thead>
           <tbody>
@@ -103,17 +110,21 @@ export default async function OrdersPage({ searchParams }: Props) {
                   {currencyFormat(product.price)}
                 </td>
 
+                {/*   
                 <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                   {product.gender}
                 </td>
 
+                */}
+
                 <td className="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                   {product.inStock}
                 </td>
-
+                {/* 
                 <td className="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                   {product.sizes.join(", ")}
                 </td>
+                */}
               </tr>
             ))}
           </tbody>
