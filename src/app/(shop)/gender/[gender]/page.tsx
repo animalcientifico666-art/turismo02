@@ -52,7 +52,7 @@ export default function Page({ params }: Props) {
   return (
     <>
       <Title
-        title="Articulos de "
+        title=" "
         subtitle="Todos los productos"
         className="mb-2"
       />

@@ -1,6 +1,9 @@
 'use client';
 
 import { useState, useEffect } from "react";
+import { FaFacebook } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { FaTiktok } from "react-icons/fa";
 
 export default function ContactForm() {
   const [loading, setLoading] = useState(false);
@@ -52,7 +55,7 @@ export default function ContactForm() {
             Contáctanos
           </h2>
           <p className="text-center text-gray-600 text-sm">
-            ¡Planifiquemos juntos tu próxima aventura!
+            
           </p>
         </div>
 
@@ -104,7 +107,7 @@ export default function ContactForm() {
               rows="4"
               required
               className="w-full p-3 border rounded-lg focus:ring focus:ring-blue-300"
-              placeholder="Cuéntanos sobre tu viaje soñado…"
+              placeholder="Cuéntanos ..."
             ></textarea>
           </div>
 
@@ -119,7 +122,7 @@ export default function ContactForm() {
 
         {/* Línea turística */}
         <div className="mt-6 text-center text-sm text-orange-700 bg-orange-100 py-2 rounded-lg">
-          ✈️ Atención personalizada para viajes, tours y experiencias únicas
+          Atención personalizada
         </div>
       </div>
 
@@ -136,7 +139,8 @@ py-12 text-center text-white shadow-2xl shadow-blue-900/40">
         </h2>
 
         <p className="text-blue-100 mb-8">
-          Más destinos, fotos increíbles y promociones exclusivas.
+          
+          Contactanos a nuestras redes sociales
         </p>
 
         <div className="flex justify-center gap-8">
@@ -148,18 +152,18 @@ py-12 text-center text-white shadow-2xl shadow-blue-900/40">
             justify-center rounded-2xl text-4xl shadow-md hover:scale-110 
             hover:bg-white/20 transition-all duration-300"
           >
-            👍
+            <FaFacebook className="w-10 h-10" />
           </a>
 
           {/* Instagram */}
           <a
-            href="#"
-            className="bg-gradient-to-br from-pink-500 via-purple-500 to-yellow-400 
-            w-16 h-16 flex items-center justify-center rounded-2xl text-4xl 
-            shadow-md hover:scale-110 transition-all duration-300"
-          >
-            📸
-          </a>
+          href="#"
+          className="bg-gradient-to-br from-pink-500 via-purple-500 to-yellow-400 
+          w-16 h-16 flex items-center justify-center rounded-2xl text-4xl 
+          shadow-md hover:scale-110 transition-all duration-300"
+        >
+          <FaInstagram className="w-10 h-10 text-white" />
+        </a>
 
           {/* WhatsApp */}
           <a
@@ -176,7 +180,7 @@ py-12 text-center text-white shadow-2xl shadow-blue-900/40">
             className="bg-black w-16 h-16 flex items-center justify-center 
             rounded-2xl text-4xl shadow-md hover:scale-110 transition-all duration-300"
           >
-            🎵
+            <FaTiktok className="w-10 h-10 text-white" />
           </a>
         </div>
       </section>

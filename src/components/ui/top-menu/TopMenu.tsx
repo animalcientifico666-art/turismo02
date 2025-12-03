@@ -4,6 +4,9 @@ import Link from "next/link"
 import { IoCartOutline, IoSearchOutline } from "react-icons/io5"
 import { useCartStore, useUIStore } from "@/store"
 import { useEffect, useState } from "react"
+import { FaUsers } from "react-icons/fa";
+import { FaIdCard } from "react-icons/fa";
+import { FaBoxOpen } from "react-icons/fa";
 
 export const TopMenu = () => {
 
@@ -32,7 +35,7 @@ export const TopMenu = () => {
         <div>
           <Link href="/">
             <span className={`${titleFont.className} antialiased font-bold text-xl`}>
-              TESLA
+              miIcomo
             </span>
             <span className="ml-1 font-semibold">TURISMO</span>
           </Link>
@@ -42,97 +45,73 @@ export const TopMenu = () => {
         <div className="hidden sm:flex items-center gap-6">
 
           <Link
-            href="/gender/men"
-            className="
-              px-4 py-2 rounded-xl font-medium text-gray-800
-              hover:text-blue-700 hover:bg-blue-100
-              transition-all relative group
-            "
-          >
-            <span className="text-lg">⛰️</span>
-            <span className="block text-sm">Productos</span>
+  href="/gender/men"
+  className="
+    px-4 py-2 rounded-xl font-medium text-gray-800
+    hover:text-blue-700 hover:bg-blue-100
+    transition-all relative group flex flex-col items-center
+  "
+>
+  <FaBoxOpen className="text-2xl mb-1" />
 
-            {/* Línea animada */}
-            <span className="
-              absolute left-1/2 -bottom-1 -translate-x-1/2 
-              w-0 h-[2px] bg-blue-600 rounded-full
-              group-hover:w-full transition-all duration-300
-            " />
-          </Link>
+  <span className="block text-sm">Productos</span>
 
-          <Link
-            href="/about"
-            className="
-              px-4 py-2 rounded-xl font-medium text-gray-800
-              hover:text-pink-700 hover:bg-pink-100
-              transition-all relative group
-            "
-          >
-            <span className="text-lg">🌸</span>
-            <span className="block text-sm">Quienes somos</span>
-
-            <span className="
-              absolute left-1/2 -bottom-1 -translate-x-1/2 
-              w-0 h-[2px] bg-pink-600 rounded-full
-              group-hover:w-full transition-all duration-300
-            " />
-          </Link>
-
+  <span
+    className="
+      absolute left-1/2 -bottom-1 -translate-x-1/2
+      w-0 h-[2px] bg-blue-600 rounded-full
+      group-hover:w-full transition-all duration-300
+    "
+  />
+</Link>
 
           <Link
-            href="/contact"
-            className="
-              px-4 py-2 rounded-xl font-medium text-gray-800
-              hover:text-pink-700 hover:bg-pink-100
-              transition-all relative group
-            "
-          >
-            <span className="text-lg">🌸</span>
-            <span className="block text-sm">Contacto</span>
+  href="/about"
+  className="
+    px-4 py-2 rounded-xl font-medium text-gray-800
+    hover:text-pink-700 hover:bg-pink-100
+    transition-all relative group flex flex-col items-center
+  "
+>
+  <FaIdCard className="text-2xl mb-1" />
 
-            <span className="
-              absolute left-1/2 -bottom-1 -translate-x-1/2 
-              w-0 h-[2px] bg-pink-600 rounded-full
-              group-hover:w-full transition-all duration-300
-            " />
-          </Link>
+  <span className="block text-sm">Quiénes somos</span>
+
+  <span
+    className="
+      absolute left-1/2 -bottom-1 -translate-x-1/2
+      w-0 h-[2px] bg-pink-600 rounded-full
+      group-hover:w-full transition-all duration-300
+    "
+  />
+</Link>
 
 
           <Link
-            href="/gender/kid"
-            className="
-              px-4 py-2 rounded-xl font-medium text-gray-800
-              hover:text-green-700 hover:bg-green-100
-              transition-all relative group
-            "
-          >
-            <span className="text-lg">👨‍👩‍👧</span>
-            <span className="block text-sm">Familiar</span>
+  href="/contact"
+  className="
+    px-4 py-2 rounded-xl font-medium text-gray-800
+    hover:text-pink-700 hover:bg-pink-100
+    transition-all relative group flex flex-col items-center
+  "
+>
+  <FaUsers className="text-2xl mb-1" />
 
-            <span className="
-              absolute left-1/2 -bottom-1 -translate-x-1/2 
-              w-0 h-[2px] bg-green-600 rounded-full
-              group-hover:w-full transition-all duration-300
-            " />
-          </Link>
+  <span className="block text-sm">Contacto</span>
 
-          <Link
-            href="/galeria"
-            className="
-              px-4 py-2 rounded-xl font-medium text-gray-800
-              hover:text-purple-700 hover:bg-purple-100
-              transition-all relative group
-            "
-          >
-            <span className="text-lg">📸</span>
-            <span className="block text-sm">Galería</span>
+  <span
+    className="
+      absolute left-1/2 -bottom-1 -translate-x-1/2
+      w-0 h-[2px] bg-pink-600 rounded-full
+      group-hover:w-full transition-all duration-300
+    "
+  />
+</Link>
 
-            <span className="
-              absolute left-1/2 -bottom-1 -translate-x-1/2 
-              w-0 h-[2px] bg-purple-600 rounded-full
-              group-hover:w-full transition-all duration-300
-            " />
-          </Link>
+
+          
+
+          
 
         </div>
 

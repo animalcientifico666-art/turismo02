@@ -40,7 +40,7 @@ export const ContactForm = () => {
           Contáctanos
         </h2>
         <p className="text-center text-gray-600 text-sm">
-          ¡Planifiquemos juntos tu próxima aventura!
+          
         </p>
       </div>
 
@@ -92,7 +92,7 @@ export const ContactForm = () => {
             rows="4"
             required
             className="w-full p-3 border rounded-lg focus:ring focus:ring-blue-300"
-            placeholder="Cuéntanos sobre tu viaje soñado…"
+            placeholder="Cuéntanos..."
           ></textarea>
         </div>
 
@@ -107,7 +107,7 @@ export const ContactForm = () => {
 
       {/* Línea turística adicional */}
       <div className="mt-6 text-center text-sm text-orange-700 bg-orange-100 py-2 rounded-lg">
-        ✈️ Atención personalizada para viajes, tours y experiencias únicas
+        Atención personalizada...
       </div>
     </div>
   );

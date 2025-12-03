@@ -15,7 +15,7 @@ export const Nosotros=()=> {
           Descubre Quiénes Somos
         </motion.h2>
         <p className="text-lg max-w-3xl mx-auto text-gray-700">
-          Creamos experiencias de viaje inolvidables, conectando personas con destinos extraordinarios alrededor del mundo. Somos más que una agencia: somos tus compañeros de aventura.
+          Creamos experiencias que van más allá del viaje: diseñamos caminos donde la energía del destino se encuentra con la esencia del viajero.
         </p>
       </div>
 
@@ -30,7 +30,11 @@ export const Nosotros=()=> {
         >
           <h3 className="text-3xl font-semibold text-blue-700 mb-4">Viajar es Vivir</h3>
           <p className="text-lg text-gray-700 mb-4">
-            Nuestro equipo está comprometido en diseñar viajes auténticos y memorables. Desde playas paradisíacas hasta ciudades históricas, te guiamos para que cada destino sea una experiencia única.
+            Viajar es abrir un portal hacia nuevas energías, es despertar los sentidos y permitir que cada destino transforme nuestra esencia. En cada ruta, el alma encuentra un nuevo motivo para expandirse.
+
+Nuestro equipo está dedicado a crear travesías auténticas y memorables, guiándote por lugares donde la belleza natural y la historia ancestral se entrelazan. Desde playas que susurran paz infinita hasta ciudades cargadas de historias que aún vibran en sus calles, cada viaje se convierte en una experiencia que deja huella en el espíritu.
+
+Creemos en un turismo consciente y responsable. Honramos cada entorno natural y cultural que visitamos, caminando con respeto y armonía para que la energía de cada lugar continúe viva para quienes vendrán después.
           </p>
           <p className="text-lg text-gray-700">
             Nos enfocamos en turismo responsable, cuidando cada entorno natural y cultural que visitamos.

@@ -16,7 +16,7 @@ export const AddToCart=({product}:Props)=>{
 
     const addProductToCart = useCartStore(state=>state.addProductTocart);
 
-    const[size, setSize]=useState<Size|undefined>();
+    const[size, setSize]=useState<Size|undefined>("M");
     const[quantity, setQuantity]=useState<number>(1);
     const[posted, setPosted]=useState(false);
 
@@ -50,14 +50,16 @@ export const AddToCart=({product}:Props)=>{
             </span>
         )}
 
-
-             <SizeSelector
-          selectSize={size}
-          availableSizes={product.sizes}
-          onSizeChanged={setSize}
-        
-        />
-        
+        <div className="hidden">
+                <SizeSelector
+                selectSize={size}
+                availableSizes={product.sizes}
+                onSizeChanged={setSize}
+                
+                />
+                
+        </div>
+             
 
         {/* Selector de Cantidad */ }
         

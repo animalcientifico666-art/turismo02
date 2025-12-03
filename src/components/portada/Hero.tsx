@@ -35,9 +35,9 @@ export const Hero = () => {
 
       {/* CONTENIDO */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center z-10">
-        <h1 className="text-6xl font-bold drop-shadow-lg">Nature Trips Peru</h1>
+        <h1 className="text-6xl font-bold drop-shadow-lg">Místico ancestral</h1>
         <button className="mt-6 px-8 py-3 bg-yellow-400 text-black font-semibold rounded-full shadow-lg hover:scale-105 transition">
-          DISCOVER NOW
+          DESCUBRIR AHORA
         </button>
       </div>
 

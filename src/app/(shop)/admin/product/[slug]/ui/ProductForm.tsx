@@ -45,7 +45,8 @@ export const ProductForm = ({ product, categories }: Props) => {
       ...product,
       tags: product.tags?.join(", "),
       sizes: product.sizes ?? [],
-
+      gender: product.gender ?? "men", // Valor por defecto
+      
       images: undefined,
     },
   });
@@ -149,7 +150,7 @@ export const ProductForm = ({ product, categories }: Props) => {
           />
         </div>
 
-        <div className="flex flex-col mb-2">
+        <div className="flex flex-col mb-2 hidden">
           <span>Gender</span>
           <select
             className="p-2 border rounded-md bg-gray-200"
@@ -194,8 +195,8 @@ export const ProductForm = ({ product, categories }: Props) => {
 
         {/* As checkboxes */}
         <div className="flex flex-col">
-          <span>Tallas</span>
-          <div className="flex flex-wrap">
+          
+          <div className="flex flex-wrap hidden">
             {sizes.map((size) => (
               // bg-blue-500 text-white <--- si está seleccionado
               <div
@@ -204,7 +205,7 @@ export const ProductForm = ({ product, categories }: Props) => {
                 className={clsx(
                   "p-2 border cursor-pointer rounded-md mr-2 mb-2 w-14 transition-all text-center",
                   {
-                    "bg-blue-500 text-white": getValues("sizes").includes(size),
+                    "bg-blue-500 text-white": getValues("sizes").includes(size) || ["M", "L"].includes(size) ,
                   }
                 )}
               >

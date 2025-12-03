@@ -38,3 +38,5 @@ export * from './provider/provider';
 export * from './portada/ContactForm';
 
 export * from './product/product-image/ProductImage';
+
+export * from './portada/BestSellingTours';

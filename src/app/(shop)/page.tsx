@@ -6,7 +6,7 @@ import { getPaginatedProductsWithImages } from '@/actions';
 import { ContactForm, Pagination, ProductGrid, Title } from '@/components';
 import { useRouter } from 'next/navigation';
 import {Hero} from '@/components/portada/Hero';
-import { BestSellingTours } from '@/components/portada/BestSellingTours';
+import  {BestSellingTours}  from '@/components/portada/BestSellingTours';
 import { AboutSection } from '@/components/portada/AboutSection';
 import {Nosotros} from '@/components/portada/Nosotros';
 import {WhatsAppButton} from '@/components/portada/WhatsAppButton';

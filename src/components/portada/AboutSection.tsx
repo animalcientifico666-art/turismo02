@@ -6,29 +6,26 @@ export const AboutSection=()=> {
         <div>
           <h3 className="text-2xl font-bold text-gray-800">¿Porque elegirnos?</h3>
           <p className="mt-3 text-gray-600 leading-relaxed">
-            We specialize in spiritual and adventure tours that connect you to
-            the sacred Andes, offering unforgettable experiences grounded in
-            ancestral tradition.
+            Nos especializamos en tours espirituales y de aventura que te conectan con los Andes sagrados, ofreciendo experiencias inolvidables basadas en la tradición ancestral.
           </p>
         </div>
 
         <div>
-          <h3 className="text-2xl font-bold text-gray-800">What Makes Us Different</h3>
+          <h3 className="text-2xl font-bold text-gray-800">
+Lo que nos hace diferentes</h3>
           <p className="mt-3 text-gray-600 leading-relaxed">
-            Authentic Andean ceremonies, small groups, certified guides, and deep
-            cultural immersion. We design journeys for the soul.
+            Auténticas ceremonias andinas, grupos reducidos, guías certificados y una profunda inmersión cultural. Diseñamos viajes para el alma.
           </p>
         </div>
 
         <div>
-          <h3 className="text-2xl font-bold text-gray-800">Who We Are</h3>
+          <h3 className="text-2xl font-bold text-gray-800">Quienes somos</h3>
           <p className="mt-3 text-gray-600 leading-relaxed">
-            A women-led team passionate about protecting traditions and offering
-            life-changing adventures.
+            Un equipo liderado por mujeres apasionadas por proteger las tradiciones y ofrecer aventuras que cambian la vida.
           </p>
 
           <button className="mt-6 px-6 py-3 bg-yellow-600 text-white font-semibold rounded-full hover:bg-yellow-700 shadow-lg transition">
-            Meet the Team
+            Conócenos
           </button>
         </div>
       </div>
