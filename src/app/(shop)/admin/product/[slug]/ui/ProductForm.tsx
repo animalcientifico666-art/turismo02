@@ -80,7 +80,7 @@ export const ProductForm = ({ product, categories }: Props) => {
     }
 
     // Redirigir al producto creado/actualizado
-    router.replace(`/admin/product/${resp.product.slug}`);
+    //router.replace(`/admin/product/${resp.product.slug}`);
   };
 
   return (
