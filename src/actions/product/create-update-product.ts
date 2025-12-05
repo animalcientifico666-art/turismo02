@@ -127,7 +127,7 @@ export const createUpdateProduct = async( formData: FormData ) => {
 
     
   } catch (error) {
-    
+     console.error("🔥 ERROR REAL SERVER ACTION:", error);
     return {
       ok: false,
       message: 'Revisar los logs, no se pudo actualizar/crear'
