@@ -6,7 +6,13 @@ import { Gender, Product, Size } from '@prisma/client';
 import { z } from 'zod';
 import { v2 as cloudinary } from 'cloudinary';
 
-cloudinary.config(process.env.CLOUDINARY_URL ?? '');
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true,
+});
 
 const productSchema = z.object({
   id: z.string().uuid().optional().nullable(),
@@ -71,6 +77,8 @@ export const createUpdateProduct = async (formData: FormData): Promise<ActionRes
     // Procesar imágenes: tomar raw values de FormData y filtrar solo Files válidos
     const rawImages = formData.getAll('images'); // puede ser [] o [""] o [File,...]
    
+    console.log("Archivos recibidos:", rawImages);
+
     const validFiles: File[] = rawImages
   .filter(f => f instanceof File && f.size > 0) as File[];
 console.log('Archivos válidos:', validFiles.length);
