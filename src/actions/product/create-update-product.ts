@@ -70,12 +70,10 @@ export const createUpdateProduct = async (formData: FormData): Promise<ActionRes
 
     // Procesar imágenes: tomar raw values de FormData y filtrar solo Files válidos
     const rawImages = formData.getAll('images'); // puede ser [] o [""] o [File,...]
+   
     const validFiles: File[] = rawImages
-      .filter(Boolean)
-      .filter((f: any) => {
-        // Aceptar objetos que tengan arrayBuffer y size (File-like)
-        return f && typeof (f as any).arrayBuffer === 'function' && typeof (f as any).size === 'number' && (f as any).size > 0;
-      }) as File[];
+  .filter(f => f instanceof File && f.size > 0) as File[];
+console.log('Archivos válidos:', validFiles.length);
 
     // Ejecutar transacción prisma
     const prismaTx = await prisma.$transaction(async (tx) => {
