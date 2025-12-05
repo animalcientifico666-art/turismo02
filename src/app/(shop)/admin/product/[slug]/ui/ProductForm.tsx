@@ -112,7 +112,7 @@ export const ProductForm = ({ product, categories }: Props) => {
           <input type="text" {...register("tags", { required: true })} className="p-2 border rounded-md bg-gray-200" />
         </div>
 
-        <div className="flex flex-col mb-2 hidden">
+        <div className="flex flex-col mb-2">
           <span>Gender</span>
           <select {...register("gender", { required: true })} className="p-2 border rounded-md bg-gray-200">
             <option value="">[Seleccione]</option>
