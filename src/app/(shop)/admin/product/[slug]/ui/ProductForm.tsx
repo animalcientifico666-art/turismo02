@@ -143,7 +143,7 @@ export const ProductForm = ({ product, categories }: Props) => {
           <input type="number" {...register("inStock", { required: true, min: 0 })} className="p-2 border rounded-md bg-gray-200" />
         </div>
 
-        <div className="flex flex-wrap hidden">
+        <div className="flex flex-wrap">
           {sizes.map((size) => (
             <div key={size} onClick={() => onSizeChanged(size)}
               className={clsx(
