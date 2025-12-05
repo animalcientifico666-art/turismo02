@@ -40,7 +40,10 @@ type ActionResponse =
 export const createUpdateProduct = async (formData: FormData): Promise<ActionResponse> => {
   try {
     // Convertir FormData a objeto simple (valores aún son strings o File/Blob)
-    const data = Object.fromEntries(formData);
+    const data: any = {};
+formData.forEach((value, key) => {
+  if (key !== "images") data[key] = value; // NO tocamos los archivos
+});
 
     // Si viene id vacío, eliminar para que Zod lo deje undefined
     if ('id' in data && data.id === '') {
