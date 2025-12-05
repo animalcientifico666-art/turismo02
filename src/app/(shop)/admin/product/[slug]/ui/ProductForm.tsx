@@ -75,6 +75,7 @@ export const ProductForm = ({ product, categories }: Props) => {
     const resp = await createUpdateProduct(formData);
 
     if (!resp.ok) {
+      console.error("❌ ERROR DETALLADO:", resp);
       alert("Producto no se pudo actualizar");
       return;
     }
