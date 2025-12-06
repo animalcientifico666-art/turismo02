@@ -30,6 +30,7 @@ const productSchema = z.object({
 // CREAR / EDITAR PRODUCTO
 // ====================
 export const createUpdateProduct = async (formData: FormData) => {
+  console.log("URL cloudinary en prod:", process.env.CLOUDINARY_URL);
   const data = Object.fromEntries(formData);
   const productParsed = productSchema.safeParse(data);
 
