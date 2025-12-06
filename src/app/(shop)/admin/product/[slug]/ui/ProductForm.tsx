@@ -158,7 +158,19 @@ export const ProductForm = ({ product, categories }: Props) => {
 
         <div className="flex flex-col mb-2">
           <span>Fotos</span>
-          <input type="file" {...register("images")} multiple accept="image/png, image/jpeg, image/avif" className="p-2 border rounded-md bg-gray-200" />
+          
+  
+          <input
+  type="file"
+  multiple
+  accept="image/png, image/jpeg, image/avif"
+  className="p-2 border rounded-md bg-gray-200"
+  onChange={(e) => {
+    setValue("images", e.target.files ?? undefined, { shouldValidate: true });
+  }}
+/>
+
+
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
