@@ -143,7 +143,7 @@ className="p-2 border rounded-md bg-gray-200"
       />
     </div>
 
-    <div className="flex flex-col mb-2">
+    <div className="flex flex-col mb-2 hidden">
       <span>Gender</span>
       <select
         {...register("gender", { required: true })}
