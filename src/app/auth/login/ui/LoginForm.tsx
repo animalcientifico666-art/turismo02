@@ -8,11 +8,14 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
+
 export const LoginForm=()=>{
 
-    const router = useRouter();
-    const [state, dispatch] = React.useActionState(authenticate, undefined);
+    //const router = useRouter();
 
+   
+    //const [state, dispatch] = React.useActionState(authenticate, undefined);
+  const [state, dispatch] = useFormState(authenticate, undefined);
 
     useEffect(()=>{
       console.log("Estado actual:", state);
