@@ -1,26 +1,23 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { getPaginatedProductsWithImages } from '@/actions';
 import { Pagination, ProductGrid, Title } from '@/components';
-import { initialData } from '@/seed/seed';
 import { Gender } from '@prisma/client';
-import { notFound, useSearchParams, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 interface Props {
-  params: Promise<{ gender: string }>;
-  searchParams: {
-    page?: string;
+  params: {
+    gender: string;
   };
 }
 
 export default function Page({ params }: Props) {
-  // ✔️ CORRECCIÓN: unwrap del Promise
-  const { gender } = React.use(params);
+  const { gender } = params;
 
   const router = useRouter();
   const searchParams = useSearchParams();
+
   const rawPage = searchParams.get('page');
   const page = Number(rawPage ?? 1);
 
@@ -30,20 +27,19 @@ export default function Page({ params }: Props) {
 
   useEffect(() => {
     async function fetchProducts() {
-      const { products, currentPage, totalPages } =
-        await getPaginatedProductsWithImages({
-          page,
-          gender: gender as Gender,
-        });
+      const resp = await getPaginatedProductsWithImages({
+        page,
+        gender: gender as Gender,
+      });
 
-      if (products.length === 0) {
+      if (resp.products.length === 0) {
         router.push('/');
         return;
       }
 
-      setProducts(products);
-      setCurrentPage(currentPage);
-      setTotalPages(totalPages);
+      setProducts(resp.products);
+      setCurrentPage(resp.currentPage);
+      setTotalPages(resp.totalPages);
     }
 
     fetchProducts();
@@ -51,11 +47,7 @@ export default function Page({ params }: Props) {
 
   return (
     <>
-      <Title
-        title=" "
-        subtitle="Todos los productos"
-        className="mb-2"
-      />
+      <Title title=" " subtitle="Todos los productos" className="mb-2" />
 
       <ProductGrid products={products} />
       <Pagination totalPages={totalPages} />
