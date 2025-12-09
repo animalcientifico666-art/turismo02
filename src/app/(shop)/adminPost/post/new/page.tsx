@@ -14,51 +14,29 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
    usando firma (signature) segura generada en el frontend
    ======================================================= */
 async function uploadImageToCloudinary(file: File) {
-  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME!;
-  const apiKey = process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY!;
-  const apiSecret = process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET!;
+  // Pedimos la firma al backend
+  const res = await fetch("/adminPost/api/cloudinary-signature");
+  const { cloudName, apiKey, timestamp, signature } = await res.json();
 
-  if (!cloudName || !apiKey || !apiSecret) {
-    throw new Error("❌ Faltan variables Cloudinary en tu .env");
-  }
-
-  const timestamp = Math.floor(Date.now() / 1000);
-
-  // Parámetros a firmar
-  const params = { timestamp: timestamp.toString() };
-
-  // Crear signature SHA1
-  const signatureString =
-    `timestamp=${params.timestamp}${apiSecret}`;
-
-  const signature = crypto
-    .createHash("sha1")
-    .update(signatureString)
-    .digest("hex");
-
-  // Construir formData
   const formData = new FormData();
   formData.append("file", file);
   formData.append("api_key", apiKey);
-  formData.append("timestamp", params.timestamp);
+  formData.append("timestamp", timestamp.toString());
   formData.append("signature", signature);
 
-  // Subir imagen
-  const res = await fetch(
+  const uploadRes = await fetch(
     `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
-    {
-      method: "POST",
-      body: formData,
-    }
+    { method: "POST", body: formData }
   );
 
-  if (!res.ok) {
-    const txt = await res.text();
-    throw new Error("❌ Error al subir imagen a Cloudinary: " + txt);
+  if (!uploadRes.ok) {
+    const txt = await uploadRes.text();
+    throw new Error("Error al subir imagen: " + txt);
   }
 
-  return await res.json(); // secure_url
+  return await uploadRes.json();
 }
+
 
 export default function NewPostPage() {
   const [title, setTitle] = useState("");
