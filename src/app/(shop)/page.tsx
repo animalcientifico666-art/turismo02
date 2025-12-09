@@ -10,7 +10,7 @@ import  {BestSellingTours}  from '@/components/portada/BestSellingTours';
 import { AboutSection } from '@/components/portada/AboutSection';
 import {Nosotros} from '@/components/portada/Nosotros';
 import {WhatsAppButton} from '@/components/portada/WhatsAppButton';
-import PostForm from '@/components/post/PostForm';
+
 
 
 

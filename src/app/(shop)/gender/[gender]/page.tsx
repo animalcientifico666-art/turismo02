@@ -21,18 +21,23 @@ export default function Page({ params }: Props) {
   const rawPage = searchParams.get('page');
   const page = Number(rawPage ?? 1);
 
+  // NUEVO: capturar la búsqueda desde la URL
+  const rawSearch = searchParams.get('search') ?? '';
+
   const [products, setProducts] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [search, setSearch] = useState(rawSearch); // NUEVO
 
   useEffect(() => {
     async function fetchProducts() {
       const resp = await getPaginatedProductsWithImages({
         page,
         gender: gender as Gender,
+        search: rawSearch, // NUEVO: enviar el texto de búsqueda
       });
 
-      if (resp.products.length === 0) {
+      if (resp.products.length === 0 && !rawSearch) {
         router.push('/');
         return;
       }
@@ -43,13 +48,39 @@ export default function Page({ params }: Props) {
     }
 
     fetchProducts();
-  }, [page, router, gender]);
+  }, [page, router, gender, rawSearch]); // NUEVO rawSearch
+
+  // NUEVO: función para actualizar búsqueda y URL
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearch(value);
+
+    const params = new URLSearchParams();
+    params.set('page', '1');
+    if (value.trim().length > 0) params.set('search', value);
+
+    router.push(`?${params.toString()}`);
+  };
 
   return (
     <>
       <Title title=" " subtitle="Todos los productos" className="mb-2" />
 
+      {/* NUEVO: input de búsqueda */}
+      <div className="w-full flex justify-left mt-6 mb-6">
+        <input
+          type="text"
+          value={search}
+          onChange={handleSearchChange}
+          placeholder="Buscar productos por nombre..."
+          className="border px-3 py-2 rounded-lg w-80 shadow-sm"
+        />
+      </div>
+
       <ProductGrid products={products} />
+
+      
+
       <Pagination totalPages={totalPages} />
     </>
   );
