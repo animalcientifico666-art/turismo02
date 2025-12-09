@@ -1,6 +1,4 @@
 // app/(shop)/adminPost/page.tsx
-export const revalidate = 0; // fuerza regeneración siempre
-
 import { getPaginatedPosts } from "@/actions";
 import { Pagination, Title } from "@/components";
 import Link from "next/link";
@@ -20,7 +18,6 @@ const getExcerpt = (content: string, length = 100) => {
 export default async function BlogPostsPage({ searchParams }: Props) {
   const page = parseInt(searchParams?.page ?? "1", 10);
 
-  // Trae los posts directamente de la base de datos
   const { posts, totalPages } = await getPaginatedPosts({ page });
 
   return (
@@ -37,27 +34,16 @@ export default async function BlogPostsPage({ searchParams }: Props) {
         <table className="min-w-full">
           <thead className="bg-gray-200 border-b">
             <tr>
-              <th className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                Imagen
-              </th>
-              <th className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                Título
-              </th>
-              <th className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                Fecha
-              </th>
-              <th className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                Resumen
-              </th>
+              <th className="px-6 py-4 text-left">Imagen</th>
+              <th className="px-6 py-4 text-left">Título</th>
+              <th className="px-6 py-4 text-left">Fecha</th>
+              <th className="px-6 py-4 text-left">Resumen</th>
             </tr>
           </thead>
           <tbody>
             {posts.map((post) => (
-              <tr
-                key={post.id}
-                className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
-              >
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              <tr key={post.id} className="bg-white border-b hover:bg-gray-100">
+                <td className="px-6 py-4">
                   {post.imageUrl ? (
                     <Link href={`/adminPost/post/${post.id}`} className="hover:underline">
                       <img
@@ -72,17 +58,15 @@ export default async function BlogPostsPage({ searchParams }: Props) {
                     </div>
                   )}
                 </td>
-                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                <td className="px-6 py-4">
                   <Link href={`/adminPost/post/${post.id}`} className="hover:underline">
                     {post.title}
                   </Link>
                 </td>
-                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                <td className="px-6 py-4">
                   {new Date(post.createdAt).toLocaleDateString()}
                 </td>
-                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                  {getExcerpt(post.content, 80)}
-                </td>
+                <td className="px-6 py-4">{getExcerpt(post.content, 80)}</td>
               </tr>
             ))}
           </tbody>
