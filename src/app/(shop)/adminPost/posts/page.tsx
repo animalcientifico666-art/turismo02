@@ -75,7 +75,7 @@
                 ))}
             </tbody>
             </table>
-
+             <Pagination totalPages={totalPages} />
         
         </div>
         </>

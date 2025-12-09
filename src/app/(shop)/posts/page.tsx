@@ -1,18 +1,27 @@
 // src/app/(public)/posts/page.tsx
 import prisma from "@/lib/prisma";
 import Link from "next/link";
+import { Pagination } from "@/components";
 
 export default async function PostsPage() {
+  const pageSize = 9; // posts por página
+  const page = 1; // página actual (puedes obtenerla de query más adelante)
+
+  // Traer solo los posts de la página actual
   const posts = await prisma.post.findMany({
     orderBy: { createdAt: "desc" },
     select: { id: true, title: true, content: true, imageUrl: true, createdAt: true },
-    take: 100,
+    take: pageSize,
+    skip: (page - 1) * pageSize,
   });
 
-  // Función para generar un extracto del contenido
+  // Traer el total de posts para calcular totalPages
+  const totalPosts = await prisma.post.count();
+  const totalPages = Math.ceil(totalPosts / pageSize); // <-- aquí defines totalPages
+
   const getExcerpt = (text: string, length = 120) => {
     if (!text) return "";
-    const cleanText = text.replace(/<[^>]+>/g, ""); // elimina etiquetas HTML
+    const cleanText = text.replace(/<[^>]+>/g, ""); 
     if (cleanText.length <= length) return cleanText;
     return cleanText.substring(0, length) + "...";
   };
@@ -48,7 +57,6 @@ export default async function PostsPage() {
                 {new Date(post.createdAt).toLocaleDateString("es-ES")}
               </div>
 
-              {/* Aquí mostramos un fragmento del contenido */}
               <p className="text-gray-700 mb-4">
                 {getExcerpt(post.content, 120)}
               </p>
@@ -63,6 +71,9 @@ export default async function PostsPage() {
           </div>
         ))}
       </div>
+
+      {/* Aquí ya no habrá error */}
+      <Pagination totalPages={totalPages} />
     </div>
   );
 }
