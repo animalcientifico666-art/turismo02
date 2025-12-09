@@ -5,35 +5,62 @@ import Link from "next/link";
 export default async function PostsPage() {
   const posts = await prisma.post.findMany({
     orderBy: { createdAt: "desc" },
-    select: { id: true, title: true, imageUrl: true, createdAt: true },
+    select: { id: true, title: true, content: true, imageUrl: true, createdAt: true },
     take: 100,
   });
 
+  // Función para generar un extracto del contenido
+  const getExcerpt = (text: string, length = 120) => {
+    if (!text) return "";
+    const cleanText = text.replace(/<[^>]+>/g, ""); // elimina etiquetas HTML
+    if (cleanText.length <= length) return cleanText;
+    return cleanText.substring(0, length) + "...";
+  };
+
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-4xl font-bold mb-8 text-center">Blog Posts</h1>
-      <div className="grid gap-6">
-        {posts.map((p) => (
-          <Link
-            key={p.id}
-            href={`/posts/${p.id}`}
-            className="block border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-200"
+    <div className="max-w-6xl mx-auto p-6">
+      <h1 className="text-4xl font-bold mb-8 text-center text-green-800">
+        Our Blog
+      </h1>
+      <p className="text-center text-gray-500 mb-12">
+        Exploring Experiences through Words
+      </p>
+
+      <div className="grid md:grid-cols-3 gap-8">
+        {posts.map((post) => (
+          <div
+            key={post.id}
+            className="bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden"
           >
-            {p.imageUrl && (
+            {post.imageUrl && (
               <img
-                src={p.imageUrl}
-                alt={p.title}
+                src={post.imageUrl}
+                alt={post.title}
                 className="w-full h-48 object-cover"
               />
             )}
-            <div className="p-4">
-              <h2 className="text-2xl font-semibold mb-1">{p.title}</h2>
-              <p className="text-gray-500 text-sm mb-2">
-                {new Date(p.createdAt).toLocaleString()}
+
+            <div className="p-6">
+              <h2 className="text-xl font-semibold mb-2 text-green-900 hover:underline">
+                {post.title}
+              </h2>
+              <div className="text-sm text-gray-500 mb-4">
+                {new Date(post.createdAt).toLocaleDateString("es-ES")}
+              </div>
+
+              {/* Aquí mostramos un fragmento del contenido */}
+              <p className="text-gray-700 mb-4">
+                {getExcerpt(post.content, 120)}
               </p>
-              <p className="text-gray-700">Haz clic para leer más...</p>
+
+              <Link
+                href={`/posts/${post.id}`}
+                className="inline-block text-green-800 font-medium hover:text-green-600"
+              >
+                Leer más »
+              </Link>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </div>

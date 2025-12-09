@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import { FaUsers } from "react-icons/fa";
 import { FaIdCard } from "react-icons/fa";
 import { FaBoxOpen } from "react-icons/fa";
+import { FaBlog } from "react-icons/fa";
 
 export const TopMenu = () => {
 
@@ -108,7 +109,27 @@ export const TopMenu = () => {
   />
 </Link>
 
+<Link
+  href="/blog"
+  className="
+    px-4 py-2 rounded-xl font-medium text-gray-800
+    hover:text-pink-700 hover:bg-pink-100
+    transition-all relative group flex flex-col items-center
+  "
+>
+  <FaBlog className="text-2xl mb-1" />
 
+
+  <span className="block text-sm">Blog</span>
+
+  <span
+    className="
+      absolute left-1/2 -bottom-1 -translate-x-1/2
+      w-0 h-[2px] bg-pink-600 rounded-full
+      group-hover:w-full transition-all duration-300
+    "
+  />
+</Link>
           
 
           
