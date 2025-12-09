@@ -1,13 +1,7 @@
 // app/(shop)/adminPost/page.tsx
 import { getPaginatedPosts } from "@/actions";
-import { Pagination, Title } from "@/components";
+import { Title } from "@/components";
 import Link from "next/link";
-
-interface Props {
-  searchParams: {
-    page?: string;
-  };
-}
 
 // Función para generar un resumen del contenido
 const getExcerpt = (content: string, length = 100) => {
@@ -15,10 +9,11 @@ const getExcerpt = (content: string, length = 100) => {
   return content.slice(0, length) + "...";
 };
 
-export default async function BlogPostsPage({ searchParams }: Props) {
-  const page = parseInt(searchParams?.page ?? "1", 10);
-
-  const { posts, totalPages } = await getPaginatedPosts({ page });
+export default async function BlogPostsPage() {
+  // Traemos todos los posts sin usar paginación y forzando que no se cacheen
+  const { posts } = await getPaginatedPosts({
+    page: 1,
+  });
 
   return (
     <>
@@ -71,8 +66,6 @@ export default async function BlogPostsPage({ searchParams }: Props) {
             ))}
           </tbody>
         </table>
-
-        <Pagination totalPages={totalPages} />
       </div>
     </>
   );
