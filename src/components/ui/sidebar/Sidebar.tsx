@@ -135,7 +135,13 @@ const isAdmin=(session?.user.role==='admin');
                 <span className="ml-3 text-xl">Productos</span>
             </Link>
 
-            
+            <Link
+                href="/adminPost/posts"
+                className="flex item-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+            >
+                <IoShirtOutline size={30} />
+                <span className="ml-3 text-xl">Blog</span>
+            </Link>
 
             <Link
                 href="/admin/users"

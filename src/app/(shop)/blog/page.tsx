@@ -1,4 +1,4 @@
-import PostsPage from '@/app/(public)/posts/page';
+import PostsPage from '@/app/(shop)/posts/page';
 import Link from 'next/link';
 
 

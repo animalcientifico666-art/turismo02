@@ -110,7 +110,7 @@ export const TopMenu = () => {
 </Link>
 
 <Link
-  href="/blog"
+  href="/posts"
   className="
     px-4 py-2 rounded-xl font-medium text-gray-800
     hover:text-pink-700 hover:bg-pink-100
