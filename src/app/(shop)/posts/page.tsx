@@ -3,11 +3,13 @@ import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { Pagination } from "@/components";
 
-export default async function PostsPage() {
-  const pageSize = 9; // posts por página
-  const page = 1; // página actual (puedes obtenerla de query más adelante)
+export const revalidate = 0; // <--- Evita cache en producción
 
-  // Traer solo los posts de la página actual
+export default async function PostsPage() {
+  const pageSize = 9; 
+  const page = 1;
+
+  // Traer posts de la DB
   const posts = await prisma.post.findMany({
     orderBy: { createdAt: "desc" },
     select: { id: true, title: true, content: true, imageUrl: true, createdAt: true },
@@ -15,9 +17,8 @@ export default async function PostsPage() {
     skip: (page - 1) * pageSize,
   });
 
-  // Traer el total de posts para calcular totalPages
   const totalPosts = await prisma.post.count();
-  const totalPages = Math.ceil(totalPosts / pageSize); // <-- aquí defines totalPages
+  const totalPages = Math.ceil(totalPosts / pageSize);
 
   const getExcerpt = (text: string, length = 120) => {
     if (!text) return "";
@@ -72,7 +73,6 @@ export default async function PostsPage() {
         ))}
       </div>
 
-      {/* Aquí ya no habrá error */}
       <Pagination totalPages={totalPages} />
     </div>
   );
