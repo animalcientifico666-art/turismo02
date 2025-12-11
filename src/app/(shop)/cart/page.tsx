@@ -43,7 +43,24 @@ export default function CartPage() {
 
             <div className="mt-5 mb-2 w-full">
               <button
-                className="flex btn-primary justify-center w-full"
+                className="
+                  flex 
+                  justify-center 
+                  items-center
+                  w-full
+                  px-4 
+                  py-3
+                  bg-[#25D366]        /* Verde WhatsApp */
+                  text-white
+                  font-semibold
+                  rounded-xl          /* Bordes redondeados */
+                  shadow-lg           /* Sombra suave */
+                  hover:bg-[#1EBE5B]  /* Verde más oscuro al pasar el mouse */
+                  hover:shadow-xl     /* Sombra más fuerte */
+                  transition-all 
+                  duration-300 
+                  ease-out
+                "
                 onClick={handleWhatsappCheckout}
               >
                 Checkout por WhatsApp
