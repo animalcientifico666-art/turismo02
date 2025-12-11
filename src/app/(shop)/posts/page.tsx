@@ -30,10 +30,10 @@ export default async function PostsPage() {
   return (
     <div className="max-w-6xl mx-auto p-6">
       <h1 className="text-4xl font-bold mb-8 text-center text-green-800">
-        Our Blog
+        Nuestro Blog
       </h1>
       <p className="text-center text-gray-500 mb-12">
-        Exploring Experiences through Words
+       Explorando Experiencias
       </p>
 
       <div className="grid md:grid-cols-3 gap-8">

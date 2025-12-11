@@ -1,4 +1,8 @@
 // app/(shop)/adminPost/page.tsx
+
+//  Evita que Next.js cachee esta página en producción
+export const dynamic = "force-dynamic";
+
 import { getPaginatedPosts } from "@/actions";
 import { Title } from "@/components";
 import Link from "next/link";
@@ -10,7 +14,7 @@ const getExcerpt = (content: string, length = 100) => {
 };
 
 export default async function BlogPostsPage() {
-  // Traemos todos los posts sin usar paginación y forzando que no se cacheen
+  // Traemos todos los posts sin usar paginación
   const { posts } = await getPaginatedPosts({
     page: 1,
   });
