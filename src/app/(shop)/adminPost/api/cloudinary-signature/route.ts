@@ -18,7 +18,8 @@ export async function GET() {
   const timestamp = Math.floor(Date.now() / 1000);
 
   // Crear signature
-  const signatureString = `timestamp=${timestamp}${apiSecret}`;
+  //const signatureString = `timestamp=${timestamp}${apiSecret}`;
+  const signatureString = `source=uw&timestamp=${timestamp}${apiSecret}`;
   const signature = crypto.createHash("sha1").update(signatureString).digest("hex");
 
   return NextResponse.json({ cloudName, apiKey, timestamp, signature });
