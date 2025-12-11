@@ -15,7 +15,10 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
    ======================================================= */
 async function uploadImageToCloudinary(file: File) {
   // Pedimos la firma al backend
-  const res = await fetch("/adminPost/api/cloudinary-signature");
+  const res = await fetch("/adminPost/api/cloudinary-signature", {
+  method: "POST",
+  cache: "no-store",
+});
   const { cloudName, apiKey, timestamp, signature } = await res.json();
 
   const formData = new FormData();

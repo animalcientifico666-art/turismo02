@@ -1,8 +1,11 @@
 // app/(shop)/adminPost/api/cloudinary-signature/route.ts
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import { NextResponse } from "next/server";
 import crypto from "crypto";
 
-export async function GET() {
+export async function POST() {
   const CLOUDINARY_URL = process.env.CLOUDINARY_URL;
   if (!CLOUDINARY_URL) return NextResponse.json({ error: "CLOUDINARY_URL no definido" }, { status: 500 });
 
