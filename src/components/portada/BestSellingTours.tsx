@@ -8,6 +8,8 @@ import imagen1 from "@/components/images/imagen1.jpg";
 import imagen2 from "@/components/images/imagen2.jpg";
 import imagen3 from "@/components/images/imagen3.jpg";
 import imagen4 from "@/components/images/imagen4.jpg";
+import imagen5 from "@/components/images/imagen5.jpg";
+import imagen6 from "@/components/images/imagen6.jpg";
 
 export const BestSellingTours = () => {
   const options = { loop: true };
@@ -31,8 +33,8 @@ export const BestSellingTours = () => {
 
   const tours = [
     { title: "Ayahuasca Ceremony", img: imagen3.src },
-    { title: "Humantay Lake", img: imagen1.src },
-    { title: "Rainbow Mountain", img: imagen1.src },
+    { title: "Humantay Lake", img: imagen6.src },
+    { title: "Rainbow Mountain", img: imagen5.src },
     { title: "Sacred Valley Tour", img: imagen4.src },
     { title: "Machu Picchu Full Day", img: imagen2.src },
   ];

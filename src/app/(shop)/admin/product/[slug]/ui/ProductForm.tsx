@@ -179,7 +179,9 @@ className="p-2 border rounded-md bg-gray-200"
       </div>
     )}
 
-    <button type="submit" className="btn-primary w-full">
+    <button type="submit" className="w-full bg-indigo-600 text-white font-semibold py-3 rounded-xl 
+hover:bg-indigo-700 hover:shadow-lg active:scale-95 
+transition-all duration-300 ease-out shadow-md">
       Guardar
     </button>
   </div>
@@ -195,7 +197,7 @@ className="p-2 border rounded-md bg-gray-200"
       />
     </div>
 
-    <div className="flex flex-wrap">
+    <div className="flex flex-wrap hidden">
       {sizes.map((size) => (
         <div
           key={size}

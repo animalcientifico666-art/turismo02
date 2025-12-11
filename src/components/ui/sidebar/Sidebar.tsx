@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useState } from "react"
 import { signOut } from "next-auth/react";
 import { IoCloseOutline, IoPersonOutline, IoSearchOutline, IoTicketOutline,IoLogInOutline,IoLogOutOutline, IoShirtOutline, IoPeopleOutline } from "react-icons/io5"
+import { FaBlog } from "react-icons/fa";
 import clsx from 'clsx';
 import { logout } from "@/actions"
 import { useSession } from "next-auth/react"
@@ -139,7 +140,7 @@ const isAdmin=(session?.user.role==='admin');
                 href="/adminPost/posts"
                 className="flex item-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
             >
-                <IoShirtOutline size={30} />
+                 <FaBlog className="text-2xl mb-1" />
                 <span className="ml-3 text-xl">Blog</span>
             </Link>
 
