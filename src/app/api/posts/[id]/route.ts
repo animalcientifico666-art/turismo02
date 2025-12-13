@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-
+import { NextResponse } from "next/server";
 export async function GET(_req: Request, { params }: any) {
   // Desempaquetamos params
   const resolvedParams = await params;
@@ -16,4 +16,32 @@ export async function GET(_req: Request, { params }: any) {
   }
 
   return new Response(JSON.stringify(post));
+}
+
+//  DELETE → eliminar post (AQUÍ VA)
+export async function DELETE(
+  _req: Request,
+  { params }: { params: { id: string } }
+) {
+  const id = Number(params.id); // conversión clave
+
+  if (isNaN(id)) {
+    return NextResponse.json(
+      { error: 'ID inválido' },
+      { status: 400 }
+    );
+  }
+
+  try {
+    await prisma.post.delete({
+      where: { id },
+    });
+
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Post no encontrado' },
+      { status: 404 }
+    );
+  }
 }
