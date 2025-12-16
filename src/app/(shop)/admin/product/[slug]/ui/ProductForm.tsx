@@ -28,6 +28,8 @@ categoryId: string;
 images?: FileList;
 }
 
+
+
 export const ProductForm = ({ product, categories }: Props) => {
 const router = useRouter();
 const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -36,8 +38,9 @@ const { register, getValues, setValue, watch, handleSubmit } = useForm<FormInput
 defaultValues: {
 ...product,
 tags: product.tags?.join(", "),
-sizes: product.sizes ?? [],
+sizes: product.sizes ?? ["M"],
 gender: product.gender ?? "men",
+categoryId: categories[0]?.id, // 👈 válido
 images: undefined,
 },
 });
@@ -53,6 +56,7 @@ setValue("sizes", Array.from(sizesSet));
 const onSubmit = async (data: FormInputs) => {
 const formData = new FormData();
 const { images, ...productToSave } = data;
+
 
 
 if (product.id) formData.append("id", product.id);
@@ -106,7 +110,7 @@ type="text"
 className="p-2 border rounded-md bg-gray-200"
 /> </div>
 
-```
+
     <div className="flex flex-col mb-2">
       <span>Slug</span>
       <input
@@ -126,7 +130,7 @@ className="p-2 border rounded-md bg-gray-200"
     </div>
 
     <div className="flex flex-col mb-2">
-      <span>Price</span>
+      <span>Precio</span>
       <input
         type="number"
         {...register("price", { required: true, min: 0 })}
@@ -157,7 +161,7 @@ className="p-2 border rounded-md bg-gray-200"
       </select>
     </div>
 
-    <div className="flex flex-col mb-2">
+    <div className="flex flex-col mb-2 hidden">
       <span>Categoria</span>
       <select
         {...register("categoryId", { required: true })}
