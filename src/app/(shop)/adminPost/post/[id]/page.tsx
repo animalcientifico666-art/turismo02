@@ -23,7 +23,7 @@ export default async function EditPostPage({ params }: Params) {
     <div className="max-w-3xl mx-auto p-5">
       <h1 className="text-2xl font-bold mb-5">Editar Post</h1>
 
-      <form action={`/api/posts/${post.id}/update`} method="POST" className="space-y-5">
+      <form action={`/api/posts`} method="POST">
         <div>
           <label className="block font-medium mb-1">Título</label>
           <input
