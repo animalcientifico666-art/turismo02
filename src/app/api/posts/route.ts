@@ -19,7 +19,11 @@ export async function GET() {
 export async function POST(req: Request) {
   try {
     // 👇 Recibe JSON directamente (no formData)
-    const { title, content, imageUrl } = await req.json();
+    const formData = await req.formData();
+
+  const title = formData.get("title") as string;
+  const content = formData.get("content") as string;
+  const imageUrl = formData.get("imageUrl") as string;
 
     const post = await prisma.post.create({
       data: {
