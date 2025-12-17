@@ -23,5 +23,5 @@ export async function POST(
   const redirectUrl = new URL("/adminPost/posts", req.url);
 
   // 🔹 Redirigir a la lista de posts
-  return NextResponse.redirect(redirectUrl);
+  return NextResponse.redirect(redirectUrl, 303);
 }
