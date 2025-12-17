@@ -1,215 +1,132 @@
 'use client'
+
 import { titleFont } from "@/config/fonts"
 import Link from "next/link"
-import { IoCartOutline, IoSearchOutline } from "react-icons/io5"
+import { IoCartOutline, IoSearchOutline, IoMenu, IoClose } from "react-icons/io5"
 import { useCartStore, useUIStore } from "@/store"
 import { useEffect, useState } from "react"
-import { FaUsers } from "react-icons/fa";
-import { FaIdCard } from "react-icons/fa";
-import { FaBoxOpen } from "react-icons/fa";
-import { FaBlog } from "react-icons/fa";
-import { FaHome } from "react-icons/fa";
+import { FaUsers, FaIdCard, FaBoxOpen, FaBlog, FaHome } from "react-icons/fa"
 
 export const TopMenu = () => {
 
-  const openSideMenu = useUIStore(state => state.openSideMenu);
+  const openSideMenu = useUIStore(state => state.openSideMenu)
+  const totalItemsInCart = useCartStore(state => state.getTotalItems())
 
-  const totalItemsInCart=useCartStore(state=>state.getTotalItems());
+  const [loaded, setLoaded] = useState(false)
+  const [mobileNavOpen, setMobileNavOpen] = useState(false)
 
-  const [loaded, setLoaded]=useState(false);
-
-  useEffect(()=>{
-    setLoaded(true);
-  });
+  useEffect(() => {
+    setLoaded(true)
+  }, [])
 
   return (
-    <nav className="relative flex px-5 justify-between items-center w-full py-4 select-none">
+    <nav className="relative px-5 py-4 w-full select-none">
 
-      {/* Fondo mágico (halo de colores) */}
+      {/* Fondo */}
       <div className="absolute inset-0 bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300 blur-3xl opacity-40 -z-10" />
 
-      {/* Contenido */}
-      <div className="flex justify-between items-center w-full 
-                      backdrop-blur-xl bg-white/30 border border-white/40 
-                      shadow-2xl rounded-2xl px-6 py-4">
+      <div className="flex justify-between items-center
+        backdrop-blur-xl bg-white/30 border border-white/40
+        shadow-2xl rounded-2xl px-6 py-4">
 
         {/* LOGO */}
-        <div>
-          <Link href="/">
-            <span className={`${titleFont.className} antialiased font-bold text-xl`}>
-              miIcomo
-            </span>
-            <span className="ml-1 font-semibold">TURISMO</span>
-          </Link>
-        </div>
-
-        {/* CENTER MENU */}
-        <div className="hidden sm:flex items-center gap-6">
-
-
-          <Link
-            href="/"
-            className="
-              px-4 py-2 rounded-xl font-medium text-gray-800
-              hover:text-blue-700 hover:bg-blue-100
-              transition-all relative group flex flex-col items-center
-            "
-          >
-          <FaHome className="text-2xl mb-1" />
-
-          <span className="block text-sm">Inicio</span>
-
-          <span
-            className="
-              absolute left-1/2 -bottom-1 -translate-x-1/2
-              w-0 h-[2px] bg-blue-600 rounded-full
-              group-hover:w-full transition-all duration-300
-            "
-          />
+        <Link href="/" className="flex items-center">
+          <span className={`${titleFont.className} font-bold text-xl`}>
+            miIcomo
+          </span>
+          <span className="ml-1 font-semibold">TURISMO</span>
         </Link>
 
+        {/* MENÚ CENTRAL - DESKTOP */}
+        <div className="hidden md:flex items-center gap-6">
 
-          <Link
-            href="/gender/men"
-            className="
-              px-4 py-2 rounded-xl font-medium text-gray-800
-              hover:text-blue-700 hover:bg-blue-100
-              transition-all relative group flex flex-col items-center
-            "
-          >
-          <FaBoxOpen className="text-2xl mb-1" />
-
-          <span className="block text-sm">Productos</span>
-
-          <span
-            className="
-              absolute left-1/2 -bottom-1 -translate-x-1/2
-              w-0 h-[2px] bg-blue-600 rounded-full
-              group-hover:w-full transition-all duration-300
-            "
-          />
-        </Link>
-
-          <Link
-  href="/about"
-  className="
-    px-4 py-2 rounded-xl font-medium text-gray-800
-    hover:text-pink-700 hover:bg-pink-100
-    transition-all relative group flex flex-col items-center
-  "
->
-  <FaIdCard className="text-2xl mb-1" />
-
-  <span className="block text-sm">Quiénes somos</span>
-
-  <span
-    className="
-      absolute left-1/2 -bottom-1 -translate-x-1/2
-      w-0 h-[2px] bg-pink-600 rounded-full
-      group-hover:w-full transition-all duration-300
-    "
-  />
-</Link>
-
-
-          <Link
-  href="/contact"
-  className="
-    px-4 py-2 rounded-xl font-medium text-gray-800
-    hover:text-pink-700 hover:bg-pink-100
-    transition-all relative group flex flex-col items-center
-  "
->
-  <FaUsers className="text-2xl mb-1" />
-
-  <span className="block text-sm">Contacto</span>
-
-  <span
-    className="
-      absolute left-1/2 -bottom-1 -translate-x-1/2
-      w-0 h-[2px] bg-pink-600 rounded-full
-      group-hover:w-full transition-all duration-300
-    "
-  />
-</Link>
-
-<Link
-  href="/posts"
-  className="
-    px-4 py-2 rounded-xl font-medium text-gray-800
-    hover:text-pink-700 hover:bg-pink-100
-    transition-all relative group flex flex-col items-center
-  "
->
-  <FaBlog className="text-2xl mb-1" />
-
-
-  <span className="block text-sm">Blog</span>
-
-  <span
-    className="
-      absolute left-1/2 -bottom-1 -translate-x-1/2
-      w-0 h-[2px] bg-pink-600 rounded-full
-      group-hover:w-full transition-all duration-300
-    "
-  />
-</Link>
-          
-
-          
+          <MenuItem href="/" icon={<FaHome />} label="Inicio" />
+          <MenuItem href="/gender/men" icon={<FaBoxOpen />} label="Productos" />
+          <MenuItem href="/about" icon={<FaIdCard />} label="Quiénes somos" />
+          <MenuItem href="/contact" icon={<FaUsers />} label="Contacto" />
+          <MenuItem href="/posts" icon={<FaBlog />} label="Blog" />
 
         </div>
 
-        {/* SEARCH, CART, MENU */}
-        <div className="flex items-center">
+        {/* DERECHA */}
+        <div className="flex items-center gap-2">
 
-          <Link href="/search" className="mx-2 hover:scale-110 transition-transform">
+          {/* Botón hamburguesa SOLO para menú principal */}
+          <button
+            onClick={() => setMobileNavOpen(!mobileNavOpen)}
+            className="md:hidden p-2 rounded-lg hover:bg-gray-200"
+          >
+            {mobileNavOpen ? <IoClose size={24} /> : <IoMenu size={24} />}
+          </button>
+
+          <Link href="/search" className="hover:scale-110 transition">
             <IoSearchOutline className="w-6 h-6" />
           </Link>
 
-          <Link href={
-            ((totalItemsInCart===0)&& loaded)
-            ? '/empty'
-            : "/cart"
-            } className="mr-2 hover:scale-110 transition-transform">
-            <div className="relative">
-
-              { (loaded && totalItemsInCart>0) &&(
-                <span className="
-                absolute text-xs rounded-full px-1 font-bold 
-                -top-2 -right-2 bg-blue-700 text-white
-              ">
-                {totalItemsInCart}  
+          <Link
+            href={loaded && totalItemsInCart === 0 ? "/empty" : "/cart"}
+            className="relative hover:scale-110 transition"
+          >
+            {loaded && totalItemsInCart > 0 && (
+              <span className="absolute -top-2 -right-2 bg-blue-700 text-white
+                text-xs px-1 rounded-full font-bold">
+                {totalItemsInCart}
               </span>
-
-              )
-              
-              
-              
-              }
-
-              
-              <IoCartOutline className="w-6 h-6" />
-
-
-
-            </div>
+            )}
+            <IoCartOutline className="w-6 h-6" />
           </Link>
 
+          {/* TU BOTÓN MENU ORIGINAL (NO SE TOCA) */}
           <button
-            onClick={() => openSideMenu()}
-            className="
-              m-2 p-2 rounded-md font-semibold 
-              hover:bg-gray-200 active:scale-95 
-              transition-all
-            "
+            onClick={openSideMenu}
+            className="ml-2 px-4 py-2 rounded-md font-semibold
+              hover:bg-gray-200 active:scale-95 transition"
           >
             Menu
           </button>
 
         </div>
-
       </div>
+
+      {/* MENÚ PRINCIPAL MOBILE */}
+      {mobileNavOpen && (
+        <div className="md:hidden mt-4
+          backdrop-blur-xl bg-white/40 border border-white/40
+          shadow-xl rounded-xl p-4 space-y-3">
+
+          <MobileItem href="/" label="Inicio" />
+          <MobileItem href="/gender/men" label="Productos" />
+          <MobileItem href="/about" label="Quiénes somos" />
+          <MobileItem href="/contact" label="Contacto" />
+          <MobileItem href="/posts" label="Blog" />
+
+        </div>
+      )}
     </nav>
-  );
-};
+  )
+}
+
+/* COMPONENTES AUXILIARES */
+
+const MenuItem = ({ href, icon, label }: any) => (
+  <Link
+    href={href}
+    className="flex flex-col items-center px-4 py-2 rounded-xl
+      hover:bg-blue-100 hover:text-blue-700 transition relative group"
+  >
+    <span className="text-2xl mb-1">{icon}</span>
+    <span className="text-sm">{label}</span>
+    <span className="absolute left-1/2 -bottom-1 -translate-x-1/2
+      w-0 h-[2px] bg-blue-600 group-hover:w-full transition-all" />
+  </Link>
+)
+
+const MobileItem = ({ href, label }: any) => (
+  <Link
+    href={href}
+    className="block px-4 py-2 rounded-lg font-medium
+      hover:bg-blue-100 hover:text-blue-700 transition"
+  >
+    {label}
+  </Link>
+)
