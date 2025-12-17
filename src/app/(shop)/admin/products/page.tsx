@@ -1,14 +1,12 @@
 export const revalidate = 0;
 
 // https://tailwindcomponents.com/component/hoverable-table
-import { getPaginatedOrders, getPaginatedProductsWithImages } from "@/actions";
+import { getPaginatedProductsWithImages } from "@/actions";
 import { Pagination, ProductImage, Title } from "@/components";
 import { currencyFormat } from "@/utils";
-import Image from "next/image";
+import { DeleteProductButton } from "@/components/admin/DeleteProductButton";
 
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import { IoCardOutline } from "react-icons/io5";
 
 interface Props {
   searchParams: {
@@ -17,12 +15,11 @@ interface Props {
 }
 
 export default async function OrdersPage({ searchParams }: Props) {
-  // Si searchParams viene como Promise, hacemos:
   const params = await searchParams;
 
-  let page = parseInt(params?.page ?? "1", 10);
+  const page = parseInt(params?.page ?? "1", 10);
 
-  const { products, currentPage, totalPages } =
+  const { products, totalPages } =
     await getPaginatedProductsWithImages({ page });
 
   return (
@@ -39,58 +36,35 @@ export default async function OrdersPage({ searchParams }: Props) {
         <table className="min-w-full">
           <thead className="bg-gray-200 border-b">
             <tr>
-              <th
-                scope="col"
-                className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-              >
+              <th className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 Imagen
               </th>
-              <th
-                scope="col"
-                className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-              >
-                Titulo
+              <th className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Título
               </th>
-              <th
-                scope="col"
-                className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-              >
+              <th className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 Precio
               </th>
-{/* 
-              <th
-                scope="col"
-                className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-              >
-                Género
-              </th>
-*/}
-              <th
-                scope="col"
-                className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-              >
+              <th className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 Inventario
               </th>
-{/* 
-              <th
-                scope="col"
-                className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-              >
-                Tallas
+              <th className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Acciones
               </th>
-*/}
             </tr>
           </thead>
+
           <tbody>
             {products.map((product) => (
               <tr
                 key={product.id}
                 className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
               >
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                {/* Imagen */}
+                <td className="px-6 py-4 whitespace-nowrap">
                   <Link href={`/product/${product.slug}`}>
                     <ProductImage
-                      src={ product.ProductImage[0]?.url }
+                      src={product.ProductImage[0]?.url}
                       width={80}
                       height={80}
                       alt={product.title}
@@ -98,6 +72,8 @@ export default async function OrdersPage({ searchParams }: Props) {
                     />
                   </Link>
                 </td>
+
+                {/* Título */}
                 <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                   <Link
                     href={`/admin/product/${product.slug}`}
@@ -106,25 +82,21 @@ export default async function OrdersPage({ searchParams }: Props) {
                     {product.title}
                   </Link>
                 </td>
-                <td className="text-sm font-bold  text-gray-900 px-6 py-4 whitespace-nowrap">
+
+                {/* Precio */}
+                <td className="text-sm font-bold text-gray-900 px-6 py-4 whitespace-nowrap">
                   {currencyFormat(product.price)}
                 </td>
 
-                {/*   
-                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                  {product.gender}
-                </td>
-
-                */}
-
-                <td className="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                {/* Inventario */}
+                <td className="text-sm font-bold text-gray-900 px-6 py-4 whitespace-nowrap">
                   {product.inStock}
                 </td>
-                {/* 
-                <td className="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                  {product.sizes.join(", ")}
+
+                {/* Acciones */}
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <DeleteProductButton productId={product.id} />
                 </td>
-                */}
               </tr>
             ))}
           </tbody>

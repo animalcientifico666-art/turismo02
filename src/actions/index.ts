@@ -22,3 +22,5 @@ export * from './category/get-categories';
 export * from './product/create-update-product';
 
 export * from './blog/get-blog';
+
+export * from './product/detele-product';
