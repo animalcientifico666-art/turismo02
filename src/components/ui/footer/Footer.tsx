@@ -22,7 +22,7 @@ export const Footer = () => {
         <div className="space-y-1 ">
           <Image
             src="/logo-footer.png"
-            alt="Pakary Travel Perú"
+            alt="Travel Perú"
             width={220}
             height={120}
           />
