@@ -1,66 +1,84 @@
-
 'use client';
 
 import { authenticate } from "@/actions";
 import Link from "next/link";
 import { useFormState } from "react-dom";
-import * as React from "react";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
+export const LoginForm = () => {
 
-export const LoginForm=()=>{
-
-    //const router = useRouter();
-
-   
-    //const [state, dispatch] = React.useActionState(authenticate, undefined);
   const [state, dispatch] = useFormState(authenticate, undefined);
 
-    useEffect(()=>{
-      console.log("Estado actual:", state);
-      if(state === 'Success')
-        
-          //router.replace('/');
-          window.location.replace('/');
-    },[state]);
- 
+  useEffect(() => {
+    if (state === 'Success') {
+      window.location.replace('/');
+    }
+  }, [state]);
 
-    return(
-        <form action={dispatch} className="flex flex-col">
+  return (
+    <div className="
+      
+    ">
+      <form
+        action={dispatch}
+        className="bg-white rounded-xl shadow-md px-5 py-6"
+      >
+        <div className="mb-6 text-center">
+          <h1 className="text-2xl font-semibold text-gray-800">
+            Iniciar sesión
+          </h1>
+          <p className="text-sm text-gray-500 mt-1">
+            Ingresa tus credenciales
+          </p>
+        </div>
 
-        <label htmlFor="email">Correo electrónico</label>
-        <input
-          className="px-5 py-2 border bg-gray-200 rounded mb-5"
-          type="email" name="email" />
+        <div className="mb-4">
+          <label className="block text-sm text-gray-700 mb-1">
+            Correo electrónico
+          </label>
+          <input
+            type="email"
+            name="email"
+            required
+            className="w-full rounded-md border border-gray-300 bg-gray-50 px-4 py-2 focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
 
+        <div className="mb-4">
+          <label className="block text-sm text-gray-700 mb-1">
+            Contraseña
+          </label>
+          <input
+            type="password"
+            name="password"
+            required
+            className="w-full rounded-md border border-gray-300 bg-gray-50 px-4 py-2 focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
 
-        <label htmlFor="email">Contraseña</label>
-        <input
-          className="px-5 py-2 border bg-gray-200 rounded mb-5"
-          type="password" name="password" />
+        {state && state !== 'Success' && (
+          <p className="text-sm text-red-600 text-center mb-4">
+            {state}
+          </p>
+        )}
 
         <button
           type="submit"
-          className="btn-primary">
+          className="w-full bg-blue-600 text-white py-2.5 rounded-md font-medium hover:bg-blue-700 transition"
+        >
           Ingresar
         </button>
 
+        <div className="flex justify-between items-center mt-5 text-sm">
+          <Link href="/auth/new-account" className="text-blue-600 hover:underline">
+            Crear cuenta
+          </Link>
 
-        {/* divisor l ine */ }
-        <div className="flex items-center my-5">
-          <div className="flex-1 border-t border-gray-500"></div>
-          <div className="px-2 text-gray-800">O</div>
-          <div className="flex-1 border-t border-gray-500"></div>
+          <Link href="/" className="text-gray-500 hover:underline">
+            Volver al inicio
+          </Link>
         </div>
-
-        <Link
-          href="/auth/new-account" 
-          className="btn-secondary text-center">
-          Crear una nueva cuenta
-        </Link>
-
       </form>
-    )
-}
-
+    </div>
+  );
+};
