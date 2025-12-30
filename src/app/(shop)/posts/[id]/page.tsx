@@ -21,7 +21,7 @@ export default async function PostPage({ params }: Props) {
     <div className="max-w-4xl mx-auto p-6">
       {/* Título y subtítulo */}
       <h1 className="text-4xl font-bold text-center text-green-800 mb-2">{post.title}</h1>
-      <p className="text-center text-gray-500 mb-6">Embracing a Purifying Journey</p>
+      <p className="text-center text-gray-500 mb-6"></p>
 
       {/* Fecha */}
       <div className="text-center text-sm text-gray-400 mb-8">

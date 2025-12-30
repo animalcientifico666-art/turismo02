@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { ProductImage } from "@/components";
 import { createUpdateProduct } from "@/actions/product/create-update-product";
 import { useState } from "react";
+import { deleteProductImage } from "@/actions";
 
 interface Props {
 product: Partial<Product> & { ProductImage?: ProductWithImage[] };
@@ -240,7 +241,10 @@ transition-all duration-300 ease-out shadow-md">
             height={300}
             className="rounded-t shadow-md"
           />
-          <button type="button" className="btn-danger w-full rounded-b-xl">
+          <button 
+          type="button" 
+          onClick={()=>deleteProductImage(image.id, image.url)}
+          className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition">
             Eliminar
           </button>
         </div>

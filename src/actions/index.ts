@@ -24,3 +24,5 @@ export * from './product/create-update-product';
 export * from './blog/get-blog';
 
 export * from './product/detele-product';
+
+export * from './product/delete-product-image';
